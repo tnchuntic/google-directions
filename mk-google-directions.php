@@ -46,36 +46,41 @@ function mkgd_footer() {
  */
 
 function mkgd_initialize() {
-  $output = "";
-
-  $output .= '<style>
+?>
+    <style>
     #mkgd-map-canvas{
-      width: ' . get_option("mkgd_width", "500px") . ';
-      height: ' . get_option("mkgd_height", "500px") . ';
+      width: <?php echo get_option("mkgd_width", "500px")?>;
+      height: <?php echo get_option("mkgd_height", "500px")?>;
     }
-  </style>';
+   </style>
 
-  $output .= '<div id="mkgd-wrap"><h4>Get Directions</h4>
+    <div id="mkgd-wrap"><h4>Get Directions</h4>
     <div class="mkgd-form row-fluid">
       <div class="span12">
-        <label for="origin">' . __("Origin") . '</label>
-        <input id="origin" name="origin" type="text" size="50" />
-        <input id="destination" name="destination" type="hidden" size="50" value="'.get_option("mkgd_destination").'" />
-        <input type="button" onclick="calcRoute();" name="btnMkgdSubmit" id="btnMkgdSubmit" value="' . __("Submit") . '" class="btn btn-warning  btn-normal"/>
+        <?php if(!get_option("mkgd_origin_hide")){?>
+        <label for="origin">Origin</label>
+        <?php $type_origin = 'text'; }else{$type_origin = 'hidden';}?>
+        <input id="origin" name="origin" type="<?php echo $type_origin;?>" size="50" value="<?php echo get_option("mkgd_origin"); ?>" />
+        
+        <?php if(!get_option("mkgd_destination_hide")){?>
+        <label for="destination">Destination</label>
+        <?php $type_destination = 'text'; }else{$type_destination = 'hidden';}?>
+        <input id="destination" name="destination" type="<?php echo $type_destination;?>" size="50" value="<?php echo get_option("mkgd_destination"); ?>" />
+        <input type="button" onclick="calcRoute();" name="btnMkgdSubmit" id="btnMkgdSubmit" value="Submit" class="btn btn-warning  btn-normal"/>
       </div>
     </ul><!-- End .mkgd-form -->
     <div id="mkgd-map-canvas"></div><!-- End #mkgd-map-canvas -->
     <div id="directions"></div><!-- End #directions -->
-  </div><!-- End #mkgd-wrap -->';
+  </div><!-- End #mkgd-wrap -->
   
- $output .= '<script type="text/javascript">
+  <script type="text/javascript">
     jQuery("#btnMkgdSubmit").click(function() {        
-      var start = document.getElementById(\'origin\').value;
-      var end = document.getElementById(\'destination\').value;
+      var start = document.getElementById('origin').value;
+      var end = document.getElementById('destination').value;
       if(start == "" || end == ""){ alert("Please enter start and end points of your destination."); return false;}        
-      jQuery(\'#directions\').html(\'<center><br/><img src="'.plugins_url('google-distance-calculator/images/loader.gif').'" alt="Loading Directions" title="Loading Directions"/></center>\');
-      jQuery.post(\''.plugins_url('/mkgd-ajax-handler.php', __FILE__).'\', {origin: start, destination: end, language: \''.get_option('mkgd_language', 'en').'\', units: \''.get_option('mkgd_units', 'metric').'\'}, function(data) {
-        jQuery(\'#directions\').html(data);
+      jQuery('#directions').html('<center><br/><img src="<?php plugins_url('google-distance-calculator/images/loader.gif'); ?>" alt="Loading Directions" title="Loading Directions"/></center>');
+      jQuery.post('<?php echo plugins_url('/mkgd-ajax-handler.php', __FILE__); ?>', {origin: start, destination: end, language: '<?php echo get_option('mkgd_language', 'en');?>', units: '<?php echo get_option('mkgd_units', 'metric');?>'}, function(data) {
+        jQuery('#directions').html(data);
       });
     });
 
@@ -84,18 +89,18 @@ function mkgd_initialize() {
      */ 
     function initialize() {
       directionsDisplay = new google.maps.DirectionsRenderer();
-      var specific_location = new google.maps.LatLng('.get_option('mkgd_latitude', '43.6525').', '.get_option('mkgd_longitude', '-79.3816667').');
+      var specific_location = new google.maps.LatLng(<?php echo get_option('mkgd_latitude', '43.6525'); ?>, <?php echo get_option('mkgd_longitude', '-79.3816667');?>);
       var mapOptions = {
         zoom:7,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         center: specific_location
       }
-      map = new google.maps.Map(document.getElementById(\'mkgd-map-canvas\'), mapOptions);
+      map = new google.maps.Map(document.getElementById('mkgd-map-canvas'), mapOptions);
       directionsDisplay.setMap(map);
     }
            
-  </script>';
-  return $output;
+  </script>
+<?php
 }
 
 /*
