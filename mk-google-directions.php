@@ -72,7 +72,7 @@ function mkgd_initialize() {
     <div id="mkgd-map-canvas"></div><!-- End #mkgd-map-canvas -->
     <div id="directions"></div><!-- End #directions -->
   </div><!-- End #mkgd-wrap -->
-  
+  </div>
   <script type="text/javascript">
     jQuery("#btnMkgdSubmit").click(function() {        
       var start = document.getElementById('origin').value;
