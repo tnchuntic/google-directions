@@ -1,0 +1,89 @@
+/*
+* Style-sheet for the plugin
+*/
+/*@import url('http://fonts.googleapis.com/css?family=Oswald:300');*/
+
+/*#mkgd-wrap{font-family: 'Oswald', aria, verdana, sans-serif;}*/
+#mkgd-wrap #mkgd-map-canvas, #mkgd-wrap #map_canvas {
+  border:0;
+  margin-bottom: 10px;
+}
+
+#mkgd-wrap .mkgd-form{}
+#mkgd-wrap .mkgd-form li{list-style: none;margin-bottom: 10px!important;}
+
+#mkgd-wrap .mkgd-form label{display: block;float: left; width: 100px;font-weight: bold;}
+#mkgd-wrap .mkgd-form input[type='button']{margin-left: 10px; margin-bottom: 10px;font-weight: bold;}
+
+#mkgd-wrap #directions{}
+#mkgd-wrap #directions h4{margin: 0px 0px 10px 0px;padding: 0px}
+#mkgd-wrap #directions ul{margin: 0;}
+#mkgd-wrap #directions li{list-style: none;margin: 0px; padding: 5px; position: relative; margin-bottom: 12px; border-top: 1px solid #ccc;}
+/*#mkgd-wrap #directions li:nth-child(odd) {background: #EEE;color: #444;}
+#mkgd-wrap #directions li:nth-child(even) {color: #444;}*/
+#mkgd-wrap #directions li div{padding-left: 15px;}
+#mkgd-wrap #directions li .distance-time{
+    position: absolute;
+    top: -11px;
+    right: 0;
+    background-color: #fff;
+    padding: 0px 8px;
+    font-size: 12px;
+}
+#mkgd-wrap #directions li .dir-tt {  
+    overflow: hidden;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.mkgd-error{background-color: #F2C6C6;color: #FF0000;padding: 5px;border: solid 1px #FF0000;}
+
+
+.dir-tt- > img{
+    display: none;
+}
+.dir-tt>img {
+position: absolute;
+left: 0;
+}
+.dir-tt-merge>img {
+top: -143px;
+}
+.dir-tt-turn-slight-right>img {
+top: -51px;
+}
+.dir-tt-turn-slight-left>img {
+top: -378px;
+}
+.dir-tt-ramp-left>img {
+top: -598px;
+}
+.dir-tt-fork-left>img {
+top: -550px;
+}
+.dir-tt-roundabout-left>img {
+    top: -197px;
+}
+
+.dir-tt-straight>img {
+top: -534px;
+}
+.dir-tt-turn-right>img {
+top: -483px;
+}
+.dir-tt-turn-left>img {
+    top: -413px;
+}
+.dir-tt-turn-slight-right>img {
+top: -51px;
+}
+.dir-tt-ferry>img {
+top: -614px;
+}
+.dir-tt-straight>img {
+top: -534px;
+}
+
